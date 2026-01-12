@@ -22,6 +22,34 @@ def tip():
     fixed = round(final, 2)
     print(fixed)
 
+def budget(): 
+    base = int(input("How many budget categories do you have: "))
+    total = int(input("What is your total monthly income: "))
+    categories = []
+    for i in range(base):
+        category = input(f"Enter the name of category(ex: rent) {i + 1}: ")
+        categories.append(category)
+    print("Your budget categories are:", categories)
+    print("enter percentage for each category: ")
+    percentages = []
+    for i in range(base):
+        percentage = float(input(f"Enter percentages for {categories[i]}: "))
+        percentages.append(percentage)
+
+    combined = sum(percentages)
+    if combined != 100:
+        print("Error The total percentage must equal 100")
+        return
+    
+def compound():
+    start = int(input("what is the starting amount: "))
+    percent = float(input("what is the interest reate: "))
+    time = int(input("how many units of time will it be compounded for: "))
+    percent = percent / 100
+    final = start * (1 + percent) ** time
+    fixed = round(final, 2)
+    print("your amount after", time, "units of time is:", fixed)
+    
 
 print("this is a financial calculator")
 choice = input("do you want to use: 1. Savings Time Calculator, 2. Compound Interest Calculator, 3. Budget Allocator, 4. Sale Price Calculator, 5. Tip Calculator. enter corresponding calculator: ")
@@ -29,3 +57,7 @@ if choice == "5":
     tip()
 elif choice == "4":
     sale()
+elif choice == "3":
+    budget()
+elif choice == "2":
+    compound()
