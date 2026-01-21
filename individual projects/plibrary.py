@@ -24,7 +24,13 @@ def add():
 def search():
 
 
-def remove():
+
+def remove(): 
+    book = input("what is the title of the book your removing: ")
+    aut = input("what is the authot")
+    full = (book+ aut)
+    print("you have removed: ", book, "by ", aut)
+    books.remove(full)
 
 
 
