@@ -21,7 +21,7 @@ def main():
         choice = input("Do you want to viiew(1), add(2), remove(3), search(4) or exit(5): ")
  #function that appends names and authors
 def add():
-    book = input("What is the title of the book you're adding: ")
+    book = input("What is the title of the book youre adding: ")
     aut = input("What is the author: ")
     full = book + " by " + aut
     books.append(full)
