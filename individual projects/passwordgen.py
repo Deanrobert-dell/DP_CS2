@@ -1,4 +1,4 @@
-#DP 2nD pass gen
+
 #import random and string for ascii cases
 import random
 import string
@@ -21,7 +21,11 @@ def generate_passwords():
         chars += string.digits
     if special == "Y":
         chars += string.punctuation
-
+    
+    if chars == "":
+        print("\nError: STUpid DUmb HUmAN, you need aglreast one selected.\n")
+        return
+    
     print("osisible Passwords:\n")
 #print multiple passwords from for loop shosing from charachters
     for i in range(4):
