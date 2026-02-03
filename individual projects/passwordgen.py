@@ -5,10 +5,10 @@ import string
 #function for asking for cases
 def generate_passwords():
     length = int(input("How long does the password need to be: "))
-
+    amount = int(input("how many passwords do you want generated:  "))
     lower = input("Does the password need lowercase letters (Y/N): ").upper()
     upper = input("Does the password need uppercase letters (Y/N): ").upper()
-    numbers = input("Does the password need numbers letters (Y/N): ").upper()
+    numbers = input("Does the password need numbers  (Y/N): ").upper()
     special = input("Does the password need special characters letters (Y/N): ").upper()
 
     chars = ""
@@ -28,7 +28,7 @@ def generate_passwords():
     
     print("osisible Passwords:\n")
 #print multiple passwords from for loop shosing from charachters
-    for i in range(4):
+    for i in range(amount):
         password = ""
         for j in range(length): #have it go for ho long shosen length is
             password += random.choice(chars)
