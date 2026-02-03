@@ -45,18 +45,18 @@ def morse_to_english(code):
     # Join english together making string
     return "".join(engt)
 
-# MAIN LOOP
+# MAIN LoOP
 def main():
-    print("This is the Morse Code translator")
+    print("this is the a Morse Code translator")
     print("yOu can translate English to morse Code or oppossite")
     
     while True:
         # Display main menu
         print("MAIN MENU:")
-        print("1 Translated from Morse Code to English")
-        print("2 Translate from English to Morse Code")
+        print("1 Translated from morse Code to english")
+        print("2 Translate from eNglish to Morse Code")
         print("3. EXIt")
-        choice = input("Please enter your choice 1 2. or 3): ")
+        choice = input("PLlease enter your choice 1 2. or 3): ")
         
         if choice == "1":
             morse_input = input("enter Morse Code (use spaces between letters too seperat): ")
@@ -66,7 +66,7 @@ def main():
         elif choice == "2":
             eng_inp = input("Enter English text to translate to Morse Code: ")
             result = english_to_morse(eng_inp)
-            print("Translated to Morse Code res ult:", result)
+            print("translated to Morse Code res ult:", result)
         
         elif choice == "3":
             print("Thanks for using translator")
@@ -75,6 +75,6 @@ def main():
         else:
             # Detect invalid input
             print("Invalid choice. Please select 1 2, or 3")
-
+#main called function
 # Call s main functions
 main()
