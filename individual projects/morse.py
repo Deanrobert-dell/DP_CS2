@@ -53,19 +53,19 @@ def main():
     while True:
         # Display main menu
         print("MAIN MENU:")
-        print("1 Translate from Morse Code to English")
+        print("1 Translated from Morse Code to English")
         print("2 Translate from English to Morse Code")
         print("3. EXIt")
-        choice = input("Please enter your choice 1 2 or 3): ")
+        choice = input("Please enter your choice 1 2. or 3): ")
         
         if choice == "1":
-            morse_input = input("Enter Morse Code (use spaces between letters): ")
+            morse_input = input("enter Morse Code (use spaces between letters too seperat): ")
             result = morse_to_english(morse_input)
-            print("translated  to English:", result)
+            print("translated  to Englsish:", result)
         
         elif choice == "2":
-            english_input = input("Enter English text to translate to Morse Code: ")
-            result = english_to_morse(english_input)
+            eng_inp = input("Enter English text to translate to Morse Code: ")
+            result = english_to_morse(eng_inp)
             print("Translated to Morse Code res ult:", result)
         
         elif choice == "3":
@@ -76,5 +76,5 @@ def main():
             # Detect invalid input
             print("Invalid choice. Please select 1 2, or 3")
 
-# Call main functions
+# Call s main functions
 main()
