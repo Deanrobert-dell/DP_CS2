@@ -1,7 +1,7 @@
 # DP morse code
-#translator for mors evcoeeode
+# translator for morse code
 
-# Create tuples for english and corrsponfing morse
+# Created tuples for English and corresponding Morse cods
 english_letters = (
     "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
     "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
@@ -13,72 +13,68 @@ morsesymbols = (
     ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", 
     "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..",
     "-----", ".----", "..---", "...--", "....-", ".....", "-....", 
-    "--...", "---..", "----.", "/"
+    "--...", "---..", "----.", " "
 )
 
-# Function to translate English  to Morse Code
+# Function to translate English to M Code
 def english_to_morse(text):
     morset = []
-    text = text.upper()  # turns all into uppercas
+    text = text.upper()  # turns all into uppercase
     for char in text:
         if char in english_letters:
             index = english_letters.index(char)
             morset.append(morsesymbols[index])
         else:
-            # for non existing chrachters in tuple
+            # for non existing characters in tuple
             morset.append("?")
-    # Join Morse Code with spaces between letters
+    # Join morse Code with spaces between letters
     return " ".join(morset)
 
-# Funct to translate morse Code to English 
+# Function to translate morse Code to english 
 def morse_to_english(code):
     engt = []
-    # Split Morse Code into symbols using a space as separator
+    # Split Morse Code into symbols using a space as separattor
     morse_symbols = code.split(" ")
     for symbol in morse_symbols:
         if symbol in morsesymbols:
             index = morsesymbols.index(symbol)
             engt.append(english_letters[index])
         else:
-            # Handle invalid Morse Code symbols
+            # Handle invalid Morse Code symnbols
             engt.append("?")
-    # Join English together makinn string
+    # Join english together making string
     return "".join(engt)
-
-
 
 # MAIN LOOP
 def main():
-    print("this is the morse code translator")
-    print("You can translate English to Morse Code or opposite")
+    print("This is the Morse Code translator")
+    print("yOu can translate English to morse Code or oppossite")
     
     while True:
         # Display main menu
         print("MAIN MENU:")
-        print("1. Translate from theCode to English")
-        print("2. Translate from english to Morse Code")
-        print("3. exit")
-        choice = input("Please enter your choice (1, 2, or 3): ")
+        print("1 Translate from Morse Code to English")
+        print("2 Translate from English to Morse Code")
+        print("3. EXIt")
+        choice = input("Please enter your choice 1 2 or 3): ")
         
         if choice == "1":
-            morse_input = input("enter Morse Code use / to signal  space: ")
+            morse_input = input("Enter Morse Code (use spaces between letters): ")
             result = morse_to_english(morse_input)
-            print("trranslated to English:", result)
+            print("translated  to English:", result)
         
         elif choice == "2":
-            english_input = input("Enter english text to translate to Morse Code: ")
+            english_input = input("Enter English text to translate to Morse Code: ")
             result = english_to_morse(english_input)
-            print("translated to Morse Code:", result)
+            print("Translated to Morse Code res ult:", result)
         
-
         elif choice == "3":
-            print("Thank you for using the morse Code Translateor")
+            print("Thanks for using translator")
             break
         
         else:
-            # detect invalidd input
-            print("Invalid choice. PLease select 1, 2, or 3.")
+            # Detect invalid input
+            print("Invalid choice. Please select 1 2, or 3")
 
-# call mian function
-if __name__ == "__main__":
-    main()
+# Call main functions
+main()
