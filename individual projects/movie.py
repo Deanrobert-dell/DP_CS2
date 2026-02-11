@@ -26,7 +26,7 @@ def load_movies():
                     # skips rows with errors
                     continue
 
-    except FileNotFoundError:
+    except FileNotFoundError:  #except thing i learned from the right from notes vieo
         print("Errors movie file not found")
     except PermissionError:
         print("Errorno permission to read the file ")
@@ -73,7 +73,7 @@ def apply_filters(movies, filters):
     results = movies
 
     if "genre" in filters:
-        results = filter_genre(results, filters["genre"])
+        results = filter_genre(results, filters["genre"]) # results is the movies that are left after the filter is applied and then wape apply the next filter on those results and so on repeatingg until we have the final list of movies that match all the filters and shw user
 
     if "director" in filters:
         results = filter_director(results, filters["director"])
@@ -135,7 +135,7 @@ def search_movies(movies):
 
         filters["length"] = (min_len, max_len)
 
-    results = apply_filters(movies, filters)
+    results = apply_filters(movies, filters) #uses movies from file, and dictionary froll of filers
 
     print("\nRESULTS:\n")
 
