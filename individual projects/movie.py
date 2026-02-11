@@ -8,8 +8,8 @@ def load_movies():
     movies = []
 
     try:
-        with open(file, "r", encoding="utf-8") as file:
-            reader = csv.DictReader(file)
+        with open(file, "r", encoding="utf-8") as csv_file:
+            reader = csv.DictReader(csv_file)
 
             for row in reader:
                 try:
