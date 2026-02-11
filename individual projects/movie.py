@@ -17,8 +17,8 @@ def load_movies():
                     movie = {
                         "title": row["Title"].strip(),
                         "director": row["Director"].strip().lower(),
-                        "genres": [g.strip().lower() for g in row["Genre"].split("/")],
-                        "actors": [a.strip().lower() for a in row["Notable Actors"].split(",")],
+                        "genres": [g.strip().lower() for g in row["Genre"].split("/")], #use g for grnre
+                        "actors": [a.strip().lower() for a in row["Notable Actors"].split(",")], #use a for actors
                         "length": int(row["Length (min)"])
                     }
                     movies.append(movie)
@@ -27,41 +27,40 @@ def load_movies():
                     continue
 
     except FileNotFoundError:
-        print("Error: movie file not found.")
+        print("Errors movie file not found")
     except PermissionError:
-        print("Error: no permission to read the file.")
+        print("Errorno permission to read the file ")
 
     return movies
 
 
-# Filters movies by genre
+# filters movie using th genre
 def filter_genre(movies, genre):
     genre = genre.lower()
-    return [m for m in movies if any(genre in g for g in m["genres"])]
+    return [m for m in movies if any(genre in g for g in m["genres"])] #repeatedly use this as a system to check if genere is in the lsi of genres, using the for loops 
 
 
 # Filters movies by director
 def filter_director(movies, director):
-    director = director.lower()
-    return [m for m in movies if director in m["director"]]
+    director = director.lower() #put in lowercase for better ereadability
+    return [m for m in movies if director in m["director"]] #check of directos are
 
 
-# Filters movies by actor
+# Filters movies by actors
 def filter_actor(movies, actor):
     actor = actor.lower()
-    return [m for m in movies if any(actor in a for a in m["actors"])]
+    return [m for m in movies if any(actor in a for a in m["actors"])]#check if actor is in the list of actors for each movi
 
-
-# Filters movies by length range
+# Filters movies by lenth range inncolumn
 def filter_length(movies, min_len, max_len):
     results = []
 
     for m in movies:
-        length = m["length"]
+        length = m["length"] #snatches data from file
 
-        if min_len is not None and length < min_len:
+        if length < min_len:   
             continue
-        if max_len is not None and length > max_len:
+        if length > max_len:   #find length from user
             continue
 
         results.append(m)
@@ -69,7 +68,7 @@ def filter_length(movies, min_len, max_len):
     return results
 
 
-# Applies all selected filters using AND logic
+# use all the functions to deternine final movies
 def apply_filters(movies, filters):
     results = movies
 
@@ -89,50 +88,50 @@ def apply_filters(movies, filters):
     return results
 
 
-# Prints movies in a readable format
+# Prints movies in good way
 def print_movies(movies):
     for m in movies:
         print(
-            f'Title: "{m["title"]}" — '
-            f'Genres: {"|".join(m["genres"]).title()} — '
-            f'Director: {m["director"].title()} — '
+            f'Title: "{m["title"]}"  ' #here and below have space to seperate ethe feild better, prints it by colums
+            f'Genres: {(m["genres"]).title()}  '
+            f'Director: {m["director"].title()}  '
             f'Length: {m["length"]} min'
         )
 
 
 # Prints the full movie list
 def print_full_list(movies):
-    print("\nFULL MOVIE LIST:\n")
+    print("\nFULL M0VIE LiST:\n")
     print_movies(movies)
 
 
-# Handles the search flow
+# main menu to search
 def search_movies(movies):
-    print("\nChoose filters to apply (comma separated):")
+    print("\nchoose filters to apply (comma separated)d:")
     print("1. Genre")
-    print("2. Director")
+    print("2. director")
     print("3. Actor")
-    print("4. Length (min/max)")
+    print("(4) Length (min/+max)")
 
-    choice = input("Example: 1,3 or 2,4 → ").split(",")
+    choice = input("Example:s 1,3 or 2,4 → ").split(",")
 
-    filters = {}
+    filters = {} #empty dicst to store the filters that the user wants to apply later ON the road
 
     if "1" in choice:
-        filters["genre"] = input("Enter genre: ")
+        filters["genre"] = input("Enter genres: ")
 
     if "2" in choice:
-        filters["director"] = input("Enter director name: ")
+        filters["director"] = input("Enter dsirector name: ")
 
     if "3" in choice:
-        filters["actor"] = input("Enter actor name: ")
+        filters["actor"] = input("enter actor name: ")
 
     if "4" in choice:
-        min_input = input("Enter minimum length (or leave blank): ")
-        max_input = input("Enter maximum length (or leave blank): ")
+        min_input = input("Enter minimum length (): ")
+        max_input = input("Enter maximum length (: ")
 
-        min_len = int(min_input) if min_input else None
-        max_len = int(max_input) if max_input else None
+        min_len = int(min_input) #uses the defined data from user (some thing below)
+        max_len = int(max_input)
 
         filters["length"] = (min_len, max_len)
 
@@ -140,29 +139,29 @@ def search_movies(movies):
 
     print("\nRESULTS:\n")
 
-    if not results:
-        print("No movies match those filters.")
-        print("Try removing one filter or widening the length range.")
+    if results == []: #see iaf its is blank
+        print("no movies match those filters.")
+        print("Try removing one filter or morewidening the length range.")
     else:
         print_movies(results)
 
 
-# Main program loop
+# Main program loops forever)
 def main():
     movies = load_movies()
 
-    print("Welcome to the Movie Recommender!")
-    print("Search movies using genre, director, actor, or length.")
+    print("welcome to the Movie Recommendertion sytem!")
+    print("Search movies using genre, director, actor, or length. to find what yoy want")
 
     while True:
-        print("\nMAIN MENU")
-        print("1. Search / Get Recommendations")
-        print("2. Print Full Movie List")
-        print("3. Exit")
+        print("\nMAIN MENU")#ask what they want to do
+        print("1 Search ")
+        print("2. se list")
+        print("3 Exit")
 
-        choice = input("Enter your choice: ")
+        choice = input("Epleas ter your choice: ")
 
-        if choice == "1":
+        if choice == "1":# now just see wht they chsoe and call a function
             search_movies(movies)
         elif choice == "2":
             print_full_list(movies)
@@ -170,7 +169,7 @@ def main():
             print("Goodbye!")
             break
         else:
-            print("Invalid choice. Please enter 1, 2, or 3.")
+            print("Your stupid (respectfully) do 1 2 or 3")
 
 
 main()
