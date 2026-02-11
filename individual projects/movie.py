@@ -7,6 +7,7 @@ file = "individual projects/movies.csv"
 def load_movies():
     movies = []
 
+    
     try:
         with open(file, "r", encoding="utf-8") as csv_file:
             reader = csv.DictReader(csv_file)
@@ -25,7 +26,6 @@ def load_movies():
                 except:
                     # skips rows with errors
                     continue
-
     except FileNotFoundError:  #except thing i learned from the right from notes vieo
         print("Errors movie file not found")
     except PermissionError:
@@ -68,6 +68,8 @@ def filter_length(movies, min_len, max_len):
     return results
 
 
+
+
 # use all the functions to deternine final movies
 def apply_filters(movies, filters):
     results = movies
@@ -100,6 +102,7 @@ def print_movies(movies):
 
 
 # Prints the full movie list
+
 def print_full_list(movies):
     print("\nFULL M0VIE LiST:\n")
     print_movies(movies)
@@ -120,6 +123,7 @@ def search_movies(movies):
     if "1" in choice:
         filters["genre"] = input("Enter genres: ")
 
+    
     if "2" in choice:
         filters["director"] = input("Enter dsirector name: ")
 
@@ -146,6 +150,7 @@ def search_movies(movies):
         print_movies(results)
 
 
+
 # Main program loops forever)
 def main():
     movies = load_movies()
@@ -159,6 +164,8 @@ def main():
         print("2. se list")
         print("3 Exit")
 
+
+        
         choice = input("Epleas ter your choice: ")
 
         if choice == "1":# now just see wht they chsoe and call a function
