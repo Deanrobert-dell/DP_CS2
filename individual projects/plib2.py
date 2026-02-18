@@ -1,7 +1,7 @@
 
 import csv
 #
-def load():
+def loads():
     try:
         with open("library.csv", "r", newline="", encoding="utf-8") as file:
             reader = csv.DictReader(file)
@@ -10,7 +10,7 @@ def load():
     except:
         pass
 
-def save():
+def saving():
     with open("library.csv", "w", newline="", encoding="utf-8") as file:
         fieldnames = ["title", "author", "year", "genre"]
         writer = csv.DictWriter(file, fieldnames=fieldnames)  #turns into dictionary
@@ -22,7 +22,7 @@ def save():
 def main(): 
         #intoduce them to lib manager
         print("Welcome to a library mannager")
-        load() #saves it between runs puts it in books list
+        loads() #saves it between runs puts it in books list
         while True:
           print("\nType the number for the action you would like to perform:")
           print("1. View simple list")
@@ -46,9 +46,9 @@ def main():
           elif choice == "5":
               search()
           elif choice == "6":
-              save()
+              saving()
           elif choice == "7":
-              save()
+              saving()
               break
           else:
               print("Invalid choice. Try again. (stupid)")
