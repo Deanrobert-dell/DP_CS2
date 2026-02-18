@@ -20,38 +20,38 @@ def save():
 
 
 def main(): 
-    #intoduce them to lib manager
-    print("Welcome to a library mannager")
-    load() #saves it between runs puts it in books list
-    while True:
-      print("\nType the number for the action you would like to perform:")
-      print("1. View simple list")
-      print("2. Add item")
-      print("3. Update item")
-      print("4. Remove item")
-      print("5. Search")
-      print("6. Save library")
-      print("7. Exit")
-  
-      choice = input("Enter choice: ")
-  
-      if choice == "1":
-          view()
-      elif choice == "2":
-          add()
-      elif choice == "3":
-          update()
-      elif choice == "4":
-          remove()
-      elif choice == "5":
-          search()
-      elif choice == "6":
-          save()
-      elif choice == "7":
-          save()
-          break
-      else:
-          print("Invalid choice. Try again.")
+        #intoduce them to lib manager
+        print("Welcome to a library mannager")
+        load() #saves it between runs puts it in books list
+        while True:
+          print("\nType the number for the action you would like to perform:")
+          print("1. View simple list")
+          print("2. Add item")
+          print("3. Update item")
+          print("4. Remove item")
+          print("5. Search")
+          print("6. Save library")
+          print("7. Exit")
+      
+          choice = input("Enter choice: ")
+      
+          if choice == "1":
+              view()
+          elif choice == "2":
+              add()
+          elif choice == "3":
+              update()
+          elif choice == "4":
+              remove()
+          elif choice == "5":
+              search()
+          elif choice == "6":
+              save()
+          elif choice == "7":
+              save()
+              break
+          else:
+              print("Invalid choice. Try again.")
  #function that appends names and authors
 def add():
     book = input("What is the title of the book youre adding: ")
@@ -60,7 +60,7 @@ def add():
     genre = input("What is the genrse: ")
     newbook = {"title": book, "author": aut, "year": year, "genre": genre}
     books.append(newbook)
-print("You have added:", book)
+    print("You have added:", book)
 #is for statement to see if a aneme is in the list (def search)
 def search():
     term = input("eNter a book title or author to search: ")
@@ -84,7 +84,6 @@ def remove():
             found = True
             break
     if found == False:
-    else:
         print("That book is not in the library")
 
 def update():
