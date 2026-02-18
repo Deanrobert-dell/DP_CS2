@@ -24,7 +24,7 @@ def main():
         print("Welcome to a library mannager")
         loads() #saves it between runs puts it in books list
         while True:
-          print("\nType the number for the action you would like to perform:")
+          print("enter in trh number item fo the number for the action you would like to perform:")
           print("1. View simple list")
           print("2. Add item")
           print("3. Upsdate item")
