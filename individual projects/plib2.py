@@ -27,13 +27,13 @@ def main():
           print("\nType the number for the action you would like to perform:")
           print("1. View simple list")
           print("2. Add item")
-          print("3. Update item")
+          print("3. Upsdate item")
           print("4. Remove item")
           print("5. Search")
-          print("6. Save library")
+          print("6 save library")
           print("7. Exit")
       
-          choice = input("Enter choice: ")
+          choice = input("Enter achoice: ")
       
           if choice == "1":
               view()
@@ -51,11 +51,11 @@ def main():
               save()
               break
           else:
-              print("Invalid choice. Try again.")
+              print("Invalid choice. Try again. (stupid)")
  #function that appends names and authors
 def add():
-    book = input("What is the title of the book youre adding: ")
-    aut = input("what is the author: ")
+    book = input("What is the title of the book youre adding??: ")
+    aut = input("what is the author of it: ")
     year = input("What is the year: ")
     genre = input("What is the genrse: ")
     newbook = {"title": book, "author": aut, "year": year, "genre": genre}
@@ -87,7 +87,7 @@ def remove():
         print("That book is not in the library")
 
 def update():
-    book = input("What is the title of the book you're updating: ")
+    book = input("What is the title of the book you'are updating: ")
     aut = input("What is the author: ")
     for item in books:
         if item["title"] == book and item["author"] == aut:
@@ -101,7 +101,7 @@ def update():
 
 
 def view():
-    mode = input("Simple view(1) or detailed view(2): ")
+    mode = input("Simpleified view(1) or detailed view of all of it(2): ")
     if mode == "1":
         for book in books:
             print(book["title"], "by", book["author"])
@@ -111,7 +111,7 @@ def view():
             print("Author:", book["author"])
             print("Year:", book["year"])
             print("Genre:", book["genre"])
-            print("-----")
+            print("pluh")
         
 #long list of books
 books = []
