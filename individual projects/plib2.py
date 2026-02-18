@@ -3,20 +3,20 @@ import csv
 #
 def loads():
     try:
-        with open("library.csv", "r", newline="", encoding="utf-8") as file:
-            reader = csv.DictReader(file)
+        with open("library.csv", "r", newline="", encoding="utf-8") as file: #opens and reads
+            reader = csv.DictReader(file) #turns into dictionary it reads and converts to dictionar(s)
             for row in reader:
                 books.append(row)
     except:
         pass
 
 def saving():
-    with open("library.csv", "w", newline="", encoding="utf-8") as file:
+    with open("library.csv", "w", newline="", encoding="utf-8") as file: #opens and writes to csv file
         fieldnames = ["title", "author", "year", "genre"]
-        writer = csv.DictWriter(file, fieldnames=fieldnames)  #turns into dictionary
+        writer = csv.DictWriter(file, fieldnames=fieldnames)  #turns into dictionary #writes start of csv file 
         writer.writeheader()
-        writer.writerows(books)
-    print("Library saved")
+        writer.writerows(books) #writrs books to the csv file
+    print("LibRary saved")
 
 
 def main(): 
@@ -59,7 +59,7 @@ def add():
     year = input("What is the year: ")
     genre = input("What is the genrse: ")
     newbook = {"title": book, "author": aut, "year": year, "genre": genre}
-    books.append(newbook)
+    books.append(newbook) #append add it to end of lust
     print("You have added:", book)
 #is for statement to see if a aneme is in the list (def search)
 def search():
@@ -90,7 +90,7 @@ def update():
     book = input("What is the title of the book you'are updating: ")
     aut = input("What is the author: ")
     for item in books:
-        if item["title"] == book and item["author"] == aut:
+        if item["title"] == book and item["author"] == aut: #if title/author match it can updaete
             item["title"] = input("New title: ")
             item["author"] = input("New author: ")
             item["year"] = input("New year: ")
@@ -101,7 +101,7 @@ def update():
 
 
 def view():
-    mode = input("Simpleified view(1) or detailed view of all of it(2): ")
+    mode = input("Simpleified view(1) or detailed view of all of it(2): ") #two different views one has only title and author for clairty
     if mode == "1":
         for book in books:
             print(book["title"], "by", book["author"])
