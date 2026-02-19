@@ -137,7 +137,7 @@ def search_movies(movies):
 
     results = apply_filters(movies, filters) #uses movies from file, and dictionary froll of filers
 
-    print("\nRESULTS:\n")
+    print("RESUlTS:")
 
     if results == []: #see iaf its is blank
         print("no movies match those filters.")
