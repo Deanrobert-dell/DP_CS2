@@ -40,7 +40,7 @@ def s_triangle(length, length2):
         e.backward(length/2)
         e.left(60)
 
-s_triangle(length, 10)
+s_triangle(length, 1)
 #easy way toi exit
 
 screen.update()
