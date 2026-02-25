@@ -1,0 +1,48 @@
+#making sierpinski triangle with turtle and for lops
+
+import turtle as trutle
+import time
+
+screen = trutle.Screen()
+
+screen.tracer(0) 
+
+length = 400
+#variable that that can be galfed
+
+
+#making
+e = trutle.Turtle()
+e.width(3)
+e.speed(0)
+e.hideturtle()
+e.setpos(0,0)
+
+#infinite triangles that are half length of previous ones and half positions so it makes sierpinski triangle
+def triangle(length):
+    for i in range(3):
+        e.forward(length)
+        e.right(120)
+
+def s_triangle(length, length2):
+    if length2 == 0:
+        triangle(length)
+    else:
+        s_triangle(length/2, length2-1)
+        e.forward(length/2)
+        s_triangle(length/2, length2-1)
+        e.backward(length/2)
+        e.right(60)
+        e.forward(length/2)
+        e.left(60)
+        s_triangle(length/2, length2-1)
+        e.right(60)
+        e.backward(length/2)
+        e.left(60)
+
+s_triangle(length, 10)
+#easy way toi exit
+
+screen.update()
+
+screen.exitonclick()
