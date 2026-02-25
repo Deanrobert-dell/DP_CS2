@@ -10,6 +10,8 @@ def get_file_path():
     return file_path
 
 
+
+
 def update_document_info(file_path):
     #update word count and time
     try:
@@ -31,7 +33,8 @@ def view_document(file_path):
     try:
         content = read_file(file_path)
         display_document(content)
-        
+
+ 
     except FileNotFoundError:
         print("Error is File not found amake sure file path is real")
     except Exception as e:
