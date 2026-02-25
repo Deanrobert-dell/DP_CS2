@@ -1,51 +1,111 @@
-#DP cs2 word counter
-from File import update_document  # ensure myapp/storage.py defines it
-update_document(42, {"title": "New title"})
+# Document Word Count Updater basically Main Menu
+from File import read_file, write_file, append_content
+from view import display_document
+from time_1 import get_formatted_time
+ #functions contained seperate files
 
-from view import print_docs
+def get_file_path():
+    #ask for fil path
+    file_path = input("enter the exact file path for your document: ").strip()
+    return file_path
 
-from append import add_to_document
 
-import File #
-# MAIN LOOP
+
+
+def update_document_info(file_path):
+    #update word count and time
+    try:
+        content = read_file(file_path)
+        word_count = len(content.split())
+        current_time = get_formatted_time()
+        
+        write_file(file_path, content, word_count, current_time)
+        print(f"Document updated. Word count: {word_count}")
+        
+    except FileNotFoundError:
+        print("Error is File not found amake sure file path is real")
+    except Exception as e:
+        print(f"Error updating the document: {e}")
+
+
+def view_document(file_path):
+    #2ith function display document
+    try:
+        content = read_file(file_path)
+        display_document(content)
+
+ 
+    except FileNotFoundError:
+        print("Error is File not found amake sure file path is real")
+    except Exception as e:
+        print(f"error whenreading document: {e}")
+
+
+def add_content_to_document(file_path):
+    #new content
+    try:
+        print("enter new content enter 2 times to end :")
+        lines = []
+        
+        while True:
+            line = input()
+            if line == "":
+                break
+            lines.append(line)
+        
+        new_content = "\n".join(lines)
+        
+        if new_content.strip():
+            append_content(file_path, new_content)
+            print("Content added successfully. good")
+        else:
+            print("pluh ")
+            
+    except FileNotFoundError:
+        print("file path not found")
+    except Exception as e:
+        print(f"Error inadding content: {e}")
+
+
+def display_menu():
+    #displays the main menu
+    print("\n Document Word Count Updater ")
+    print("1 Update document info")
+    print("2 View document")
+    print("3 Add content to document")
+    print("4d Exit")
+
+
 def main():
-    print("this is a word counter with time recording")
-    print("you can update docs, view docs, add to docs, and exit")
+    #main loop with functions
+    file_path = ""
     
     while True:
-        # Display main menu
-        print("MAIN MENU:")
-        print("1 Update Docs")
-        print("2. View Docs")
-        print("3. Add to Docs")
-        print("4. Exit")
-        choice = input("PPlease enter your choice (1-4): ")
-
+        display_menu()
+        choice = input("Enter your choice (1-4): ").strip()
+        
         if choice == "1":
-            doc_name = input("Enter the document name to update: ")
-            new_content = input("Enter the new content: ")
-            update_document(doc_name, new_content) #
-
+            file_path = get_file_path()
+            update_document_info(file_path)
+            
         elif choice == "2":
-            print_docs()
-
+            if file_path:
+                view_document(file_path)
+            else:
+                print("need file path START WITH OPTIO 1")
+                
         elif choice == "3":
-            doc_name = input("Enter the document name to add to: ")
-            additional_content = input("Enter the additional content: ")
-            add_to_document(doc_name, additional_content)
-
+            if file_path:
+                add_content_to_document(file_path)
+            else:
+                print("need file path START WITH OPTIO 1")
+                
         elif choice == "4":
-            print("Thanks for using the word counter")
+            print("beebye")
             break
-
+            
         else:
-            # Detect invalid input
-            print("Invalid choice. Please select 1 2, or 3")
-#main called function
-# Call s main functions
+            print("Invalid choice. Please select 1, 2, 3, or 4.")
+
 
 main()
-
-
-
-
