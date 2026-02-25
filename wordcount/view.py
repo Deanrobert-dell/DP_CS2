@@ -1,11 +1,11 @@
-
-
-# Prints documents in good way
-def print_docs(docs):
-    for d in docs:
-        print(
-            f'Title: "{d["title"]}"  ' #here and below have space to seperate ethe feild better, prints it by colums
-            f'Genres: {(d["genres"]).title()}  '
-            f'Director: {d["director"].title()}  '
-            f'Length: {d["length"]} min'
-        )
+# View Module - Display Document Content
+def display_document(content):
+    """
+    Display the document content in a clean format.
+    
+    Args:
+        content (str): The document content to display
+    """
+    print("\nDocument content:")
+    print(content)
+    print()
