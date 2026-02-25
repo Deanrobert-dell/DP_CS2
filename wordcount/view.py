@@ -1,11 +1,6 @@
-# View Module - Display Document Content
+#display
 def display_document(content):
-    """
-    Display the document content in a clean format.
-    
-    Args:
-        content (str): The document content to display
-    """
+    #simply displays in a clean way
     print("\nDocument content:")
     print(content)
     print()
