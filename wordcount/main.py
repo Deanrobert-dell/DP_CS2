@@ -1,7 +1,7 @@
 # Document Word Count Updater - Main Menu
-from file_handler import read_file, write_file, append_content
+from File import read_file, write_file, append_content
 from view import display_document
-from time_handler import get_formatted_time
+from time import get_formatted_time
 
 
 def get_file_path():

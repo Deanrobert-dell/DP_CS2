@@ -14,7 +14,7 @@ def add_to_document(doc_path, content):
         bool: True on success
     """
     try:
-        from file_handler import append_content
+        from File import append_content
         append_content(doc_path, content)
         return True
     except Exception as e:
