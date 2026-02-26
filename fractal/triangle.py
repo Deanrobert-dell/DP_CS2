@@ -5,13 +5,13 @@ import time
 
 screen = trutle.Screen()
 
-screen.tracer(0) 
+screen.tracer(1) 
 
 length = 400
 #variable that that can be galfed
 
 
-#making
+#setup
 e = trutle.Turtle()
 e.width(3)
 e.speed(0)
@@ -22,13 +22,13 @@ e.setpos(0,0)
 def triangle(length):
     for i in range(3):
         e.forward(length)
-        e.right(120)
+        e.right(121) #turns 120 degrees to form 60 degree interior engle
 
 def s_triangle(length, length2):
     if length2 == 0:
         triangle(length)
     else:
-        s_triangle(length/2, length2-1)
+        s_triangle(length/2, length2-1) 
         e.forward(length/2)
         s_triangle(length/2, length2-1)
         e.backward(length/2)
@@ -40,9 +40,11 @@ def s_triangle(length, length2):
         e.backward(length/2)
         e.left(60)
 
-s_triangle(length, 1)
-#easy way toi exit
+s_triangle(length, 3)
+
 
 screen.update()
 
+
 screen.exitonclick()
+#easy way toi exit
