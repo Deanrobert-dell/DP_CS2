@@ -13,7 +13,7 @@ length = 400
 
 #setup
 e = trutle.Turtle()
-e.width(3)
+e.width(1)
 e.speed(0)
 e.hideturtle()
 e.setpos(0,0)
