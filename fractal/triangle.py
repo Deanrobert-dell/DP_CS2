@@ -13,7 +13,7 @@ length = 400
 
 #setup
 e = trutle.Turtle()
-e.width(3)
+e.width(1)
 e.speed(0)
 e.hideturtle()
 e.setpos(0,0)
@@ -29,14 +29,14 @@ def s_triangle(length, length2):
         triangle(length)
     else:
         s_triangle(length/2, length2-1) 
-        e.forward(length/2)
+        e.forward(length/2) #move the psotition for new triangle
         s_triangle(length/2, length2-1)
         e.backward(length/2)
-        e.right(60)
+        e.right(60)#top most riangle
         e.forward(length/2)
         e.left(60)
         s_triangle(length/2, length2-1)
-        e.right(60)
+        e.right(60)#resets
         e.backward(length/2)
         e.left(60)
 
