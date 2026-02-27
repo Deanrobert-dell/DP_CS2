@@ -2,9 +2,9 @@ import turtle as trutle
 import time
 
 screen = trutle.Screen()
-
-
 e = trutle.Turtle()
+screen.bgcolor("black")
+e.pencolor("red")
 e.width(3)
 e.speed(0)
 e.hideturtle()
@@ -77,6 +77,7 @@ e.setpos(120,30)
 e.setpos(113,22)
 
 t = trutle.Turtle()
+t.pencolor("red")
 t.hideturtle()
 t.width(3)
 t.speed(0)
@@ -293,6 +294,7 @@ time.sleep(1)
 
 
 t3= trutle.Turtle()
+t3.pencolor("red")
 font_style = ("Times New Roman", 25, "normal")
 t3.hideturtle()
 t3.penup()

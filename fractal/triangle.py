@@ -5,7 +5,7 @@ import time
 
 screen = trutle.Screen()
 
-screen.tracer(0) 
+screen.tracer(1) 
 
 length = 400
 #variable that that can be galfed
@@ -17,7 +17,8 @@ e.width(1)
 e.speed(0)
 e.hideturtle()
 e.setpos(0,0)
-
+e.pencolor("red")
+screen.bgcolor("black")
 #infinite triangles that are half length of previous ones and half positions so it makes sierpinski triangle
 def triangle(length):
     for i in range(3):
@@ -40,7 +41,7 @@ def s_triangle(length, length2):
         e.backward(length/2)
         e.left(60)
 
-s_triangle(length, 8)
+s_triangle(length, 3)
 
 
 screen.update()
