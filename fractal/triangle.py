@@ -5,7 +5,7 @@ import time
 
 screen = trutle.Screen()
 
-screen.tracer(0)#makes it happen instantly 
+screen.tracer(0) 
 
 length = 400
 #variable that that can be galfed
@@ -13,7 +13,7 @@ length = 400
 
 #setup
 e = trutle.Turtle()
-e.width(1)
+e.width(3)
 e.speed(0)
 e.hideturtle()
 e.setpos(0,0)
@@ -24,21 +24,19 @@ def triangle(length):
         e.forward(length)
         e.right(120) #turns 120 degrees to form 60 degree interior engle
 
-
-#repeatedly half triangle so it fits in itself
-    def s_triangle(length, length2):
-    if length2 == 0: #draw triangle at lowest level
+def s_triangle(length, length2):
+    if length2 == 0:
         triangle(length)
     else:
         s_triangle(length/2, length2-1) 
-        e.forward(length/2) #move positin 
+        e.forward(length/2)
         s_triangle(length/2, length2-1)
         e.backward(length/2)
-        e.right(60) #draws top triangle
+        e.right(60)
         e.forward(length/2)
         e.left(60)
         s_triangle(length/2, length2-1)
-        e.right(60) #resets pos
+        e.right(60)
         e.backward(length/2)
         e.left(60)
 
