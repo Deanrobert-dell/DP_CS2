@@ -41,7 +41,7 @@ def s_triangle(length, length2):
         e.backward(length/2)
         e.left(60)
 
-s_triangle(length, 3)
+s_triangle(length, 6)
 
 
 screen.update()
