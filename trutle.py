@@ -2,6 +2,8 @@ import turtle as trutle
 import time
 
 screen = trutle.Screen()
+
+
 e = trutle.Turtle()
 screen.bgcolor("black")
 e.pencolor("red")

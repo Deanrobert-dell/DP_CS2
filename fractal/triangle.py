@@ -3,6 +3,8 @@
 import turtle as trutle
 import time
 
+depth = int(input("choose depth 1-8: "))
+color = input("choose color: ")
 screen = trutle.Screen()
 
 screen.tracer(1) 
@@ -17,7 +19,7 @@ e.width(1)
 e.speed(0)
 e.hideturtle()
 e.setpos(0,0)
-e.pencolor("red")
+e.pencolor(color)
 screen.bgcolor("black")
 #infinite triangles that are half length of previous ones and half positions so it makes sierpinski triangle
 def triangle(length):
@@ -41,7 +43,8 @@ def s_triangle(length, length2):
         e.backward(length/2)
         e.left(60)
 
-s_triangle(length, 6)
+
+s_triangle(length, depth)
 
 
 screen.update()
