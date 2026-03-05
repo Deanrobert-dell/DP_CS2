@@ -45,7 +45,9 @@ while comp_score < 5:
         user_move = (scissor)
     elif user_input == 4:
         print ("quiting")
+        user_move = 0
         break
+        
     else:
         print("error")
     print (user_move)
@@ -84,12 +86,14 @@ while comp_score < 5:
     if comp_score >= 5:
         print ("computer won, you suck")
         print ("your highscore was", user_score)
+        scores = [user_score]
+        return scores
         break
     print ("your score is", user_score, "computer score is", comp_score)
     
 
 
-print (user_move)
+print ("user move is", user_move)
 
 
 
