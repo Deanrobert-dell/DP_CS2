@@ -1,7 +1,7 @@
 import turtle
 
-def draw_axes(t):
-    """Draws the X (Time) and Y (Net Income) axes starting from 0,0."""
+def draw(t):
+    
     t.penup()
     t.goto(0, 0)
     t.pendown()
@@ -14,8 +14,7 @@ def draw_axes(t):
     t.write(" Net Income", align="left")
     t.penup()
 
-def plot_net_income(t, data):
-    """Plots net income over time starting from (0,0)."""
+def plot(t, data):
     t.goto(0, 0)  
     t.color("green")
     t.pensize(3)
@@ -24,7 +23,7 @@ def plot_net_income(t, data):
     
     for time, income in data:
         t.goto(time, income)
-        t.dot(10, "black")
+        t.dot(8, "black")
 
 
 screen = turtle.Screen()
@@ -39,8 +38,8 @@ chart_turtle.speed(2)
 financial_data = [(50, 10), (100, 15), (150, 12), (200, 25), (250, 30000)]
 
 
-draw_axes(chart_turtle)
-plot_net_income(chart_turtle, financial_data)
+draw(chart_turtle)
+plot(chart_turtle, financial_data)
 
 chart_turtle.hideturtle()
 screen.exitonclick()
