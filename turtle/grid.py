@@ -6,12 +6,12 @@ def draw(t):
     t.goto(0, 0)
     t.pendown()
     t.goto(300, 0)  
-    t.write(" Time Passed", align="left")
+    t.write("dates", align="left")
     t.penup()
     t.goto(0, 0)
     t.pendown()
     t.goto(0, 300)  
-    t.write(" Net Income", align="left")
+    t.write(" net income", align="left")
     t.penup()
 
 def plot(t, data):
@@ -27,7 +27,7 @@ def plot(t, data):
 
 
 screen = turtle.Screen()
-screen.title("Net Income Over Time")
+screen.title("net income")
 
 screen.setworldcoordinates(-50, -50, 400, 400) 
 

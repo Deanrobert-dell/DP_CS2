@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 # Data to plot
-labels = ['Apples', 'Bananas', 'Cherries', 'Dates']
+labels = ['entertainment', 'food', 'gas', 'rent']
 sizes = [35, 25, 25, 15]
 
 # Create the pie chart
