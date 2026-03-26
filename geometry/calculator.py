@@ -15,6 +15,7 @@ def display_menu():
 def show_formulas(shapes):
     if len(shapes) == 0:
         print("No chapes, first make some")
+        
     else:
         for s in shapes:
             s.formula()

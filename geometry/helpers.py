@@ -36,7 +36,7 @@ class Triangle:
 
 
     def area(self):
-        return round(0.5 * self.base * self.height, 2)
+        return round(0.5 * seslf.base * self.height, 2)
 
     def perimeter(self):
         return round(self.s1 + self.s2 + self.s3, 2)
@@ -67,6 +67,7 @@ class Rectangle:
 
     def area(self):
         return round(self.width * self.height, 2)
+
 
     def perimeter(self):
         return round(2 * (self.width + self.height), 2)
