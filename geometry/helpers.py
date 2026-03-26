@@ -18,6 +18,7 @@ class Circle:
     def big_area(self, other): #literaly justcompares are
         return self.area() > other.area()
 
+
     def longer_perim(self, other):
         return self.circumference() > other.perimeter()
 
@@ -63,6 +64,7 @@ class Triangle:
 class Rectangle:
     def __init__(self, width, height):
         self.width = width
+        
         self.height = height
 
 
@@ -114,6 +116,7 @@ class Square:
     def longer_perim(self, other):
         return self.perimeter() > other.perimeter()
 
+
     def formula(self):
         print("Square: Area = s^2, Perimeter = 4s") # more equations
 
@@ -141,7 +144,7 @@ def select_shape(shapes):
 
 def compare_shapes(shapes):
     try:
-        a = int(input("first shape #: ")) - 1 #asks for shape number minus for list index
+        a = int(input("first shape #")) - 1 #asks for shape number minus for list index
         b = int(input("aecond shape #: ")) - 1
 
         if shapes[a].big_area(shapes[b]):
@@ -157,8 +160,7 @@ def sort_shapes(shapes):
     choice = input("Sort by area(1) or perimeter(2): ")
 
     if choice == "1":
-        shapes.sort(key=lambda x: x.area())
-    else:
+        shapes.sort(key=lambda x: x.area()) # sort by area 
         shapes.sort(key=lambda x: x.perimeter())
 
     print("sorted i think")
