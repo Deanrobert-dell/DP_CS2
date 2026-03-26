@@ -58,6 +58,8 @@ class Triangle:
         print("triangle: area = 1/2 * base * height")
 
 
+
+
 class Rectangle:
     def __init__(self, width, height):
         self.width = width
@@ -83,9 +85,12 @@ class Rectangle:
     def longer_perim(self, other):
         return self.perimeter() > other.perimeter()
 
-    @staticmethod
-    def formula():
+    
+    
+    def formula(self):
         print("rectangle: area = w*h, Perimeter = 2(w+h)")
+
+
 
 
 class Square:

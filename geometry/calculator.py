@@ -41,7 +41,7 @@ def main():
                         shapes.append(Rectangle(w, h))
                         print("rectangle made")
                 except:
-                    print("invalid input.")
+                    print("invalid input.") #for no me
 
             elif shape == "2":
                 try:
@@ -50,7 +50,7 @@ def main():
                     s1 = float(input("side1: "))
                     s2 = float(input("side2: "))
                     if b > 0 and h > 0:
-                        shapes.append(Triangle(b, h, s1, s2, b))
+                        shapes.append(Triangle(b, h, s1, s2,  b))
                         print("You just made triangle.")
                 except:
                     print("Invalid input.")
