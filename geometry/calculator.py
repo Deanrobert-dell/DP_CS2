@@ -14,7 +14,7 @@ def display_menu():
 
 def show_formulas(shapes):
     if len(shapes) == 0:
-        print("No shapes created yet.")
+        print("No chapes, first make some")
     else:
         for s in shapes:
             s.formula()
@@ -26,20 +26,21 @@ def main():
     
     while True:
         display_menu()
-        choice = input("Enter your choice (1-4): ").strip()
+        choice = input("aEnter your choice (1-4): ").strip()
         
         if choice == "1":
             shape = input("rectangle(1) triangle(2) circle(3) square(4): ")
             
             if shape == "1":
                 try:
+
                     w = float(input("width: "))
                     h = float(input("height: "))
                     if w > 0 and h > 0:
                         shapes.append(Rectangle(w, h))
-                        print("You have created a rectangle.")
+                        print("rectangle made")
                 except:
-                    print("Invalid input.")
+                    print("invalid input.")
 
             elif shape == "2":
                 try:
@@ -49,31 +50,34 @@ def main():
                     s2 = float(input("side2: "))
                     if b > 0 and h > 0:
                         shapes.append(Triangle(b, h, s1, s2, b))
-                        print("You have created a triangle.")
+                        print("You just made triangle.")
                 except:
                     print("Invalid input.")
+
 
             elif shape == "3":
                 try:
                     r = float(input("radius: "))
                     if r > 0:
                         shapes.append(Circle(r))
-                        print("You have created a circle.")
+                        print("You created a circle.")
                 except:
-                    print("Invalid input.")
+                    print("invalid input.")
 
             elif shape == "4":
                 try:
                     s = float(input("side: "))
                     if s > 0:
                         shapes.append(Square(s))
-                        print("You have created a square.")
+                        print("Youe created a square.")
                 except:
-                    print("Invalid input.")
+                    print("invalid input.")
             
             else:
-                print("Invalid shape.")
+                print("invalid shape.")#final stupidproof
 
+
+#all the formulas details from helper
         elif choice == "2":
             view_shapes(shapes)
 
@@ -94,7 +98,7 @@ def main():
             break
             
         else:
-            print("Invalid choice. Please select 1-7.")
+            print("Invalid choice do a 1 or 7, do'nt be stupid.")
 
 
 main()

@@ -1,13 +1,12 @@
 # Geometry Calculator
 
-This program lets users create and compare shapes.
+compare shapes 
 
 Features:
-- Create Circle, Rectangle, Square, Triangle
-- Calculate area and perimeter
+- make shapes
+- area adn perimiter
 - Compare shapes
 - Sort shapes
-- View formulas
+- View the formulas
 
-Run:
-python calculator.py
+run from calculator.py

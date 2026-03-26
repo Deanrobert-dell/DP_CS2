@@ -2,37 +2,38 @@
 
 class Circle:
     def __init__(self, radius):
-        self.radius = radius
+        self.radi = radius
 
-    def area(self):
-        return round(3.14 * self.radius * self.radius, 2)
+    def area(self): #use same  functs for all to make easier to call/use
+        return round(3.14 * self.radi * self.radi, 2) #calculations 
 
     def circumference(self):
-        return round(2 * 3.14 * self.radius, 2)
-
+        return round(2 * 3.14 * self.radi, 2) #makes circumfrence
+    
     def display(self):
-        print(f"Circle (r={self.radius})")
-        print(f"Area: {self.area()}")
-        print(f"Perimeter: {self.circumference()}")
+        print(f"circle (r={self.radi})")
+        print(f"Areas: {self.area()}")
+        print(f"Perimeter: {self.circumference()}") 
 
-    def has_larger_area(self, other):
+    def big_area(self, other): #literaly justcompares are
         return self.area() > other.area()
 
-    def has_longer_perimeter(self, other):
+    def longer_perim(self, other):
         return self.circumference() > other.perimeter()
 
     
     def formula(self):
-        print("Circle: Area = pi*r^2, Perimeter = 2*pi*r")
+        print("Ccircle: area = pi*r^2, perimeter = 2*pi*r")
 
 
 class Triangle:
-    def __init__(self, base, height, side1, side2, side3):
+    def __init__(self, base, height, side1, side2, side3): #inputs for triangle
         self.base = base
         self.height = height
         self.s1 = side1
         self.s2 = side2
         self.s3 = side3
+
 
     def area(self):
         return round(0.5 * self.base * self.height, 2)
@@ -45,21 +46,24 @@ class Triangle:
         print(f"Area: {self.area()}")
         print(f"Perimeter: {self.perimeter()}")
 
-    def has_larger_area(self, other):
+    def bigarea(self, other):
         return self.area() > other.area()
 
-    def has_longer_perimeter(self, other):
+    def longer_perim(self, other):
         return self.perimeter() > other.perimeter()
 
     
+
     def formula(self):
-        print("Triangle: Area = 1/2 * base * height")
+        print("triangle: area = 1/2 * base * height")
 
 
 class Rectangle:
     def __init__(self, width, height):
         self.width = width
         self.height = height
+
+
 
     def area(self):
         return round(self.width * self.height, 2)
@@ -72,15 +76,15 @@ class Rectangle:
         print(f"Area: {self.area()}")
         print(f"Perimeter: {self.perimeter()}")
 
-    def has_larger_area(self, other):
+    def big_area(self, other):
         return self.area() > other.area()
 
-    def has_longer_perimeter(self, other):
+    def longer_perim(self, other):
         return self.perimeter() > other.perimeter()
 
     @staticmethod
     def formula():
-        print("Rectangle: Area = w*h, Perimeter = 2(w+h)")
+        print("rectangle: area = w*h, Perimeter = 2(w+h)")
 
 
 class Square:
@@ -98,14 +102,15 @@ class Square:
         print(f"Area: {self.area()}")
         print(f"Perimeter: {self.perimeter()}")
 
-    def has_larger_area(self, other):
+    def big_area(self, other):
         return self.area() > other.area()
 
-    def has_longer_perimeter(self, other):
+    def longer_perim(self, other):
         return self.perimeter() > other.perimeter()
 
     def formula(self):
-        print("Square: Area = s^2, Perimeter = 4s")
+        print("Square: Area = s^2, Perimeter = 4s") # more equations
+
 
 
 # helper functions
@@ -114,8 +119,8 @@ def view_shapes(shapes):
     if len(shapes) == 0:
         print("No shapes.")
     else:
-        for i, s in enumerate(shapes):
-            print(f"\nShape #{i+1}")
+        for i, s in enumerate(shapes): #get shape/indexes
+            print(f"Shape #{i+1}")
             s.display()
 
 
@@ -127,18 +132,19 @@ def select_shape(shapes):
         print("Invalid selection.")
 
 
+
 def compare_shapes(shapes):
     try:
-        a = int(input("First shape #: ")) - 1
-        b = int(input("Second shape #: ")) - 1
+        a = int(input("first shape #: ")) - 1 #asks for shape number minus for list index
+        b = int(input("aecond shape #: ")) - 1
 
-        if shapes[a].has_larger_area(shapes[b]):
-            print("Shape 1 has larger area")
+        if shapes[a].big_area(shapes[b]):
+            print("Shape num 1 has larger area")
         else:
             print("Shape 2 has larger area")
 
     except:
-        print("Error comparing.")
+        print("WQRONG")
 
 
 def sort_shapes(shapes):
@@ -149,7 +155,7 @@ def sort_shapes(shapes):
     else:
         shapes.sort(key=lambda x: x.perimeter())
 
-    print("Sorted!")
+    print("sorted i think")
 
 
 def show_formulas():
