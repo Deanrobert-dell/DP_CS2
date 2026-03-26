@@ -160,7 +160,8 @@ def sort_shapes(shapes):
     choice = input("Sort by area(1) or perimeter(2): ")
 
     if choice == "1":
-        shapes.sort(key=lambda x: x.area()) # sort by area 
+        shapes.sort(key=lambda x: x.area()) # sort by area
+    elif choice == "2":
         shapes.sort(key=lambda x: x.perimeter())
 
     print("sorted i think")
