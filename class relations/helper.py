@@ -6,7 +6,7 @@ class Students:
     def add_grade(self, grade):
         self.grades.append(grade)
 
-    def get_average(self):
+    def summary(self):
         if not self.grades:
             return 0
         return sum(self.grades) / len(self.grades)
@@ -21,7 +21,7 @@ class GradeBook:
     def __init__(self):
         self.students = []
 
-    def add_student(self, student):
+    def make_student(self, student):
         self.students.append(student)
 
     def get_student(self, name):
@@ -30,6 +30,6 @@ class GradeBook:
                 return student
         return None
 
-    def display_all(self):
+    def view(self):
         for student in self.students:
             student.display()

@@ -1,5 +1,8 @@
-from helpers import *
+from helper import *
+from faker import Faker
 
+fake = Faker()
+print(fake.name())
 
 def display_menu():
     #displays the main menu
@@ -22,27 +25,26 @@ def main():
 
 
 #all the formulas details from helper
+        elif choice == "1":
+            make_student(student)
+
         elif choice == "2":
-            view_shapes(student)
+            add_grade(student)
 
         elif choice == "3":
-            select_shape(student)
+            st_records(student)
 
         elif choice == "4":
-            compare_shapes(student)
+            view(student)
 
         elif choice == "5":
-            sort_shapes(student)
+            summary(student)
 
         elif choice == "6":
-            show_formulas(student)
-
-        elif choice == "7":
             print("beebye")
             break
-            
         else:
-            print("Invalid choice do a 1 or 7, do'nt be stupid.")
+            print("Invalid choice do a 1 or 6, do'nt be stupid.")
 
 
 main()
