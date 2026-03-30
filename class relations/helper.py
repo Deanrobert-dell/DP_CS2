@@ -14,7 +14,7 @@ class Students:
     def display(self):
         print(f"Student: {self.name}")
         print(f"Grades: {self.grades}")
-        print(f"Average: {self.get_average()}")
+        print(f"Average: {self.summary()}")
 
 
 class GradeBook:
@@ -33,3 +33,5 @@ class GradeBook:
     def view(self):
         for student in self.students:
             student.display()
+    def st_records(self, student): #display all students grades
+        student.display()
