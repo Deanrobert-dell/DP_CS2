@@ -1,3 +1,8 @@
-Name,StudentID,Grades
-dean peterson,1234,"84,4"
-dean,4,
+Name,Grades
+dean peterson,1234
+dean,4
+person,84
+dean robert,68
+me,100
+me2,43
+me3,50

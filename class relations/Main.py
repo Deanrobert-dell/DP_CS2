@@ -1,109 +1,120 @@
-from helper import GradeBook
+from helper import GradeBook #just need this class contains functions
+import os
 
-gradebook = GradeBook("Students.csv")
+
+gradebook = GradeBook("class relations/Students.csv") #path
 
 def display_menu():
-    """Display the main menu"""
-    print("GRADE BOOK")
+    #main menu
+    print("GRADE B0OK")
     print("1 Create new student")
-    print("2 Add grade to student")
+
+    print("2 Adds grade to student")
     print("3 View student records")
-    print("4 View all students")
-    print("5 Class summary")
+
+    print("4 View aLll students")
+    print("5 class summary")
+
     print("6 QUIT")
 
 def add_student_menu():
-    """Handle adding a new student"""
-    name = input("Enter student name: ").strip()
+    #Take func to make student
+    name = input("entera  student name: ").strip()
     if not name:
-        print("Name cannot be empty.")
+        print("") #idiot proof
         return
     
     if gradebook.add_student(name):
         print(f"Student {name} added successfully.")
     else:
-        print(f"Student {name} already exists.")
+        print(f"Student {name} already exists snupid.")
     
-    input("Press Enter to continue...")
+    input("ENTER")
 
 def add_grade_menu():
-    """Handle adding a grade to a student"""
+    #Handle adding a grade to a student
     students = gradebook.get_all_students()
     if len(students) == 0:
-        print("No students in the gradebook yet.")
-        input("Press Enter to continue...")
+
+        print("No students in the gradebook yet.makesome")
+        input("ENTER")
         return
     
-    print("Current Students:")
+    print("current Students:")
     for student in students:
-        print(f"- {student.name}")
+        print(f"- {student.name}") #crazy format method!!!
     
     name = input("Enter student name: ").strip()
-    student = gradebook.find_student_by_name(name)
+    student = gradebook.search(name)
     
     if not student:
-        print(f"Student {name} not found.")
-        input("Press Enter to continue...")
+        print(f" Student {name} not found.")
+        input("ENTER")
         return
     
     try:
-        grade = int(input("Enter grade (0-100): "))
+        grade = int(input("enter grade (0-100): "))
+
+
         
         if grade < 0 or grade > 100:
             print("Grade must be between 0 and 100.")
-            input("Press Enter to continue...")
+            input("ENTER")
             return
         
         if gradebook.add_grade_to_student(name, grade):
             avg = student.calculate_average()
-            letter = student.get_letter_grade(avg)
+            letter = student.lettergrade(avg)
+
             print(f"Grade added. {name} average: {avg:.1f} ({letter})")
         else:
             print("Error adding grade.")
     
     except ValueError:
-        print("Invalid grade. Please enter a number between 0 and 100.")
+        print("plurt to 0-100")
     
-    input("Press Enter to continue...")
+    input("ENTER")
 
 def view_student_record():
-    """Handle viewing a specific student's record"""
+    #first student viewing stuff
     students = gradebook.get_all_students()
     if len(students) == 0:
+
         print("No students in the gradebook yet.")
-        input("Press Enter to continue...")
+        input("ENTER")
         return
     
-    print("Available Students:")
+    print("pick one :")
     for student in students:
-        print(f"- {student.name}")
+        print(f"- {student.name}") #method...
     
     name = input("Enter student name: ").strip()
-    student = gradebook.find_student_by_name(name)
+    student = gradebook.search(name)
     
     if student:
-        student.display_info()
+        student.info()
     else:
         print(f"Student {name} not found.")
     
-    input("Press Enter to continue...")
+    input("ENTER")
 
 def view_all_students():
-    """Handle viewing all students"""
+    #student viewing 
+
     gradebook.display_all_students()
-    input("Press Enter to continue...")
+    input("ENTER")
 
 def class_summary():
-    """Handle displaying class summary"""
-    gradebook.display_class_summary()
-    input("Press Enter to continue...")
+    #sumamry
+    gradebook.classsummary()
+    input("ENTER")
 
 def main():
-    """Main function to run the grade book system"""
+    #main gardebook func
     while True:
         display_menu()
         choice = input("Enter your choice: ").strip()
-        
+         # all the choices ever
         if choice == "1":
             add_student_menu()
         
@@ -112,6 +123,7 @@ def main():
         
         elif choice == "3":
             view_student_record()
+
         
         elif choice == "4":
             view_all_students()
@@ -120,12 +132,13 @@ def main():
             class_summary()
         
         elif choice == "6":
-            print("Goodbye!")
+
+            print("beebye")
             break
         
         else:
-            print("Invalid choice. Please enter a number between 1 and 6.")
-            input("Press Enter to continue...")
+            print("pluh, 1-6")
+            input("ENter")
 
-if __name__ == "__main__":
+if __name__ == "__main__": #runs only When not imported froma anohtne file
     main()
