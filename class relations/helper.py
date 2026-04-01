@@ -169,5 +169,5 @@ class GradeBook:
                                     pass
                             
                             self.students[name] = student
-        except Exception as e:
-            print(f"messed up flowchacho: {e}")
+        except Exception :
+            print(f"messed up flowchacho: {Exception}")
