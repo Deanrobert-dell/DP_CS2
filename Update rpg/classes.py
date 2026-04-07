@@ -1,4 +1,5 @@
 from faker import Faker
+
 import random
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -30,7 +31,7 @@ class DataVisualization:
     def compare_characters(self, names):
         subset = self.df.loc[names]
 
-        subset[["strength", "dexterity", "intelligence", "wisdom"]].plot(kind='bar')
+        subset[["strength", "dexterity",  "intelligence", "wisdom"]].plot(kind='bar')
         plt.title("Character Comparison")
         plt.show()
 
