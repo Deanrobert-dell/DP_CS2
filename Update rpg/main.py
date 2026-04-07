@@ -1,7 +1,11 @@
-import matplotlib
-import pandas
-import faker
+
+from faker import Faker
+import random
+
+fake = Faker()
+
 import pakistans_functions as pf
+import classes as pf2 #ADDS MY CLASSES TO THE MAIN FILE 
 import time as t
 import random as r
 def make_identity(name, race, char_class):
@@ -333,6 +337,7 @@ def create_character():
             break
     t.sleep(0.7)
     print("Now you have made your basic character!")
+
     t.sleep(0.7)
     print(f"Here are your final stats!\nStrength is {stren}\nDexterity is {dex}\nConstitution is {cons}\nIntelligence is {intell}\nCharisma is {rizz}\nWisdom is {wis}\nArmor Class is {ac}")
 
@@ -344,27 +349,62 @@ def create_character():
     return char
 
 def menu():
+
     print("1. Adjust Stats")
     print("2. Create Character")
     print("3. Adjust Character Inventory")
+    print("4. Visualization")
+    print("5. Statistical Analysis")
+
+
+    print("6. Random Generator")
     print(" ")
-    action = pf.idiot_proof_num_range("Type the number of the desired option ", 1, 3)
+    action = pf.idiot_proof_num_range("Type the number of the desired option ", 1, 6)
 
     match action:
         case 1:
             adjust_stats()
+
         case 2:
+
             char = create_character()
             name = char["identity"][0]
             stats[name] = char
             print(stats[name])
             n, rce, cls = stats[name]["identity"]
             print("Identify tuple:", n, rce, cls)
+
         case 3:
             manage_inventory(names)
+
+        case 4:
+            if not stats:
+                print("No characters to visualize.")
+                return
+            
+            viz = pf2.DataVisualization(stats)
+            name = pf.idiot_proof_specific("Which character? ", names, "Invalid name")
+            viz.show_bar_chart(name)
+
+        case 5:
+            if not stats:
+                print("No data to analyze.")
+                return
+            
+            analyzer = pf2.StatisticalAnalyzer(stats)
+            analyzer.basic_stats()
+
+
+            analyzer.strongest_character()
+
+        case 6:
+            rng = pf2.RandomGenerator()
+            print("Random Name:", rng.name())
+            print("Backstory:", rng.backstory())
+            print("Quest:", rng.quest())
+
         case _:
             raise Exception("Something horrendous has occured. If you are recieving this message, we are cooked")
-        
 
 while True:
     menu()
