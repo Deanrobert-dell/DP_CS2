@@ -1,0 +1,25 @@
+import pygame
+
+# 1. Initialize Pygame
+pygame.init()
+
+# 2. Create the window (Width, Height)
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("My Pygame Window")
+
+# 3. Game Loop
+running = True
+while running:
+    # Check for events (like clicking the 'X')
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Draw your game here
+    screen.fill("black")  # Fill background with color
+    
+    # Update the display
+    pygame.display.flip()
+
+# 4. Clean up and exit
+
