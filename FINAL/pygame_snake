@@ -1,25 +1,56 @@
 import pygame
 
-# 1. Initialize Pygame
+
 pygame.init()
 
-# 2. Create the window (Width, Height)
-screen = pygame.display.set_mode((800, 600))
-pygame.display.set_caption("My Pygame Window")
 
-# 3. Game Loop
+screen = pygame.display.set_mode((1000, 1000))
+pygame.display.set_caption("checkers")
+
+# Create the checkerboard
+def draw_board():
+    for row in range(10): 
+        for col in range(10):
+            if (row + col) % 2 == 0: 
+                pygame.draw.rect(screen, "white", (col * 100, row * 100, 100, 100)) #white squares
+            else:
+                pygame.draw.rect(screen, "black", (col * 100, row * 100, 100, 100)) #black squares
+def draw_pieces(): #overlays board wit pieces
+    for row in range(10): #10x10 grid
+        for col in range(10):
+            if (row + col) % 2 == 1: 
+                if row < 3:  #only on bottom rows
+                    pygame.draw.circle(screen, "red", (col * 100 + 50, row * 100 + 50), 40) #red pieces #smaller than squares
+                elif row > 6:  #only on the top rows
+                    pygame.draw.circle(screen, "white", (col * 100 + 50, row * 100 + 50), 40) #white pieces #smaller than squares
+
+# 1. Update your function to accept 'event'
+def user_move(event):
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        pos = event.pos  # Better to use the event's exact click position
+        col = pos[0] // 100
+        row = pos[1] // 100
+        print(f"Clicked on row {row}, column {col}")
+
+# 2. Update your main loop
 running = True
 while running:
-    # Check for events (like clicking the 'X')
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        
+        # Pass the current event into your function
+        user_move(event)
 
+    
+
+    
     # Draw your game here
     screen.fill("black")  # Fill background with color
-    
+    draw_board()
+    draw_pieces()
     # Update the display
     pygame.display.flip()
 
-# 4. Clean up and exit
+
 
