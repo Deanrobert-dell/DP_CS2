@@ -42,18 +42,6 @@ while running:
         # Pass the current event into your function
         user_move(event)
 #for determining valid moves check +1 row -1 or +1 column for either diagonal left or right
-    if event.type == pygame.MOUSEBUTTONDOWN:
-        pos = event.pos  # Better to use the event's exact click position
-        col = pos[0] // 100
-        row = pos[1] // 100
-        print(f"Clicked on row {row}, column {col}")
-
-# 2. Update your main loop
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
 
     # Draw your game here
     screen.fill("black")  # Fill background with color
