@@ -1,56 +1,99 @@
 import pygame
 
-
 pygame.init()
-
 
 screen = pygame.display.set_mode((1000, 1000))
 pygame.display.set_caption("checkers")
+font = pygame.font.Font(None, 36)
 
 # Create the checkerboard
 def draw_board():
-    for row in range(10): 
+    for row in range(10):
         for col in range(10):
-            if (row + col) % 2 == 0: 
-                pygame.draw.rect(screen, "white", (col * 100, row * 100, 100, 100)) #white squares
+            if (row + col) % 2 == 0:
+                pygame.draw.rect(screen, "white", (col * 100, row * 100, 100, 100))  # white squares
             else:
-                pygame.draw.rect(screen, "black", (col * 100, row * 100, 100, 100)) #black squares
-def draw_pieces(): #overlays board wit pieces
-    for row in range(10): #10x10 grid
-        for col in range(10):
-            if (row + col) % 2 == 1: 
-                if row < 3:  #only on bottom rows
-                    pygame.draw.circle(screen, "red", (col * 100 + 50, row * 100 + 50), 40) #red pieces #smaller than squares
-                elif row > 6:  #only on the top rows
-                    pygame.draw.circle(screen, "white", (col * 100 + 50, row * 100 + 50), 40) #white pieces #smaller than squares
+                pygame.draw.rect(screen, "black", (col * 100, row * 100, 100, 100))  # black squares
 
-# 1. Update your function to accept 'event'
+def draw_pieces():  # overlays board wit pieces
+    for row in range(10):  # 10x10 grid
+        for col in range(10):
+            if (row + col) % 2 == 1:
+                if row < 3:  # only on bottom rows
+                    pygame.draw.circle(screen, "#B30000", (col * 100 + 50, row * 100 + 50), 40)  # red pieces
+                elif row > 6:  # only on the top rows
+                    pygame.draw.circle(screen, "#0600B2", (col * 100 + 50, row * 100 + 50), 40)  # blue pieces
+
 def user_move(event):
     if event.type == pygame.MOUSEBUTTONDOWN:
         pos = event.pos  # Better to use the event's exact click position
         col = pos[0] // 100
         row = pos[1] // 100
-        print(f"Clicked on row {row}, column {col}")
+        print(f"clicked on row {row}, column {col}")
 
-# 2. Update your main loop
+# For determining valid moves (forward diagonals) check +1 row -1 or +1 column for either diagonal left or right
+def valid_moves(piece_pos):
+    col, row = piece_pos
+    moves = []
+    if row < 9:  # Check forward diagonal left/right
+        if col > 0:
+            moves.append((col - 1, row + 1))
+        if col < 9:
+            moves.append((col + 1, row + 1))
+    return moves
+
+# Selection state and message to display
+selected_piece = None  # (col, row) of selected piece or None
+message = ""  # feedback message shown on screen
+
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        
-        # Pass the current event into your function
+
+        # keep the original debug print
         user_move(event)
-#for determining valid moves check +1 row -1 or +1 column for either diagonal left or right
+
+        # handle clicks for selecting a piece and then a destination
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            pos = event.pos
+            col = pos[0] // 100
+            row = pos[1] // 100
+
+            if selected_piece is None:
+                # select only if there's a piece on that square (dark squares with pieces in initial layout)
+                if (row + col) % 2 == 1 and (row < 3 or row > 6):
+                    selected_piece = (col, row)
+                    message = f"selected piece at {selected_piece}"
+                else:
+                    message = "no selecteable piece"
+            else:
+                dest = (col, row)
+                moves = valid_moves(selected_piece)
+                if dest in moves:
+                    message = f"move possible from {selected_piece} to {dest}"
+                    # Here you could update the board state to actually move the piece.
+                else:
+                    message = f"move NOT allowed from {selected_piece} to {dest}"
+                selected_piece = None
 
     # Draw your game here
     screen.fill("black")  # Fill background with color
     draw_board()
     draw_pieces()
+
+    # highlight selected square if any
+    if selected_piece is not None:
+        sel_col, sel_row = selected_piece
+        highlight_rect = pygame.Surface((100, 100), pygame.SRCALPHA)
+        highlight_rect.fill((255, 255, 0, 80))  # translucent yellow
+        screen.blit(highlight_rect, (sel_col * 100, sel_row * 100))
+
+    # render the message text
+    if message:
+        text_surf = font.render(message, True, "yellow")
+        screen.blit(text_surf, (10, 960))
+
     # Update the display
     pygame.display.flip()
-
-
-
-
-
