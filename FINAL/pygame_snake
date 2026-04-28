@@ -37,9 +37,9 @@ def valid_moves(piece_pos):
     moves = []
     if row < 9:  # Check forward diagonal left/right
         if col > 0:
-            moves.append((col - 1, row + 1))
+            moves.append((col - 1 or col - 1, row + 1))
         if col < 9:
-            moves.append((col + 1, row + 1))
+            moves.append((col + 1 or col - 1, row + 1))
     return moves
 
 # Selection state and message to display
