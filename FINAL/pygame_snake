@@ -30,17 +30,48 @@ def user_move(event):
         col = pos[0] // 100
         row = pos[1] // 100
         print(f"clicked on row {row}, column {col}")
-
-# For determining valid moves (forward diagonals) check +1 row -1 or +1 column for either diagonal left or right
-def valid_moves(piece_pos):
+        
+############################################################################################
+# based on two sides
+def valid_moves_red(piece_pos):
     col, row = piece_pos
     moves = []
-    if row < 9:  # Check forward diagonal left/right
-        if col > 0:
-            moves.append((col - 1 or col - 1, row + 1))
-        if col < 9:
-            moves.append((col + 1 or col - 1, row + 1))
+    new_row = row + 1
+    if 0 <= new_row <= 9:
+        if col - 1 >= 0:
+            moves.append((col - 1, new_row))
+        if col + 1 <= 9:
+            moves.append((col + 1, new_row))
     return moves
+
+def valid_moves_blue(piece_pos):
+    col, row = piece_pos
+    moves = []
+    new_row = row - 1
+    if 0 <= new_row <= 9:
+        if col - 1 >= 0:
+            moves.append((col - 1, new_row))
+        if col + 1 <= 9:
+            moves.append((col + 1, new_row))
+    return moves
+
+# finds which func to use
+def valid_moves(piece_pos):
+    col, row = piece_pos
+    # based oni top and last 3 rows
+    if row < 3:
+        return valid_moves_red(piece_pos)
+    elif row > 6:
+        return valid_moves_blue(piece_pos)
+    # for pieces not in the initial zones (e.g. moved pieces), allow both forward directions
+    # (could use color
+    moves = []
+    moves.extend(valid_moves_red(piece_pos))
+    moves.extend(valid_moves_blue(piece_pos))
+    #no dupes
+    return list(dict.fromkeys(moves))
+############################################################################################
+
 
 # Selection state and message to display
 selected_piece = None  # (col, row) of selected piece or None
@@ -87,7 +118,8 @@ while running:
     if selected_piece is not None:
         sel_col, sel_row = selected_piece
         highlight_rect = pygame.Surface((100, 100), pygame.SRCALPHA)
-        highlight_rect.fill((255, 255, 0, 80))  # translucent yellow
+        highlight_rect.fill(("#FFEA007F"))  # translucent yellow
+        
         screen.blit(highlight_rect, (sel_col * 100, sel_row * 100))
 
     # render the message text
