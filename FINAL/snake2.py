@@ -31,30 +31,5 @@ while running:
     screen.fill("black")  # Fill background with color
     draw_board()
     apple_pos = spawn_apple()
-    apple_pos1 = spawn_apple()
-    apple_pos2 = spawn_apple()
-    apple_pos3 = spawn_apple()
-    apple_pos4 = spawn_apple()
-    apple_pos5 = spawn_apple()
-    apple_pos6 = spawn_apple()
-    apple_pos7 = spawn_apple()
-    apple_pos8 = spawn_apple()
-    apple_pos9 = spawn_apple()
-    apple_pos10 = spawn_apple()
-    apple_pos11 = spawn_apple()
-    apple_pos12 = spawn_apple()
-    apple_pos13 = spawn_apple()
     pygame.draw.circle(screen, "red", apple_pos1, 10)  # Draw the apple
-    pygame.draw.circle(screen, "blue", apple_pos2, 10)  # Draw the apple
-    pygame.draw.circle(screen, "yellow", apple_pos3, 10)  # Draw the apple
-    pygame.draw.circle(screen, "green", apple_pos4, 10)  # Draw the apple
-    pygame.draw.circle(screen, "purple", apple_pos5, 10)  # Draw the apple
-    pygame.draw.circle(screen, "orange", apple_pos6, 10)  # Draw the apple
-    pygame.draw.circle(screen, "pink", apple_pos7, 10)  # Draw the apple
-    pygame.draw.circle(screen, "cyan", apple_pos8, 10)  # Draw the apple
-    pygame.draw.circle(screen, "magenta", apple_pos9, 10)  # Draw the apple
-    pygame.draw.circle(screen, "lime", apple_pos10, 10)  # Draw the apple
-    pygame.draw.circle(screen, "brown", apple_pos11, 10)  # Draw the apple
-    pygame.draw.circle(screen, "navy", apple_pos12, 10)  # Draw the apple
-    pygame.draw.circle(screen, "teal", apple_pos13, 10)  # Draw the apple
     pygame.display.flip()
