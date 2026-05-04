@@ -14,9 +14,9 @@ CIRCLE_COLOR = (50, 150, 255)
 
 # Physics Constants
 GRAVITY = 0.2
-BOUNCE_STRENGTH = 2.00  # Energy gain/loss (1.0 = perfect bounce)
+BOUNCE_STRENGTH = 1.01  # Energy gain/loss (1.0 = perfect bounce)
 MIN_CIRCLE_RADIUS = 1
-RADIUS_REDUCTION = .001
+RADIUS_REDUCTION = .01
 
 def main():
     pygame.init()
