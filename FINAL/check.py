@@ -1,5 +1,5 @@
 import pygame
-
+import random
 pygame.init()
 
 screen = pygame.display.set_mode((1000, 1000))
@@ -126,6 +126,15 @@ while running:
     if message:
         text_surf = font.render(message, True, "yellow")
         screen.blit(text_surf, (10, 960))
+
+    def ai_move():
+        # Simple AI that picks a random valid move
+        #randomly picks a moveable spots and moves there, in the (move_piece) function call this after the players turn
+
+    def move_piece(start, end):
+        #check if space is allowed, then move piece to that spot
+        #after player goes call ai moves from (ai_move)
+
 
     # Update the display
     pygame.display.flip()
