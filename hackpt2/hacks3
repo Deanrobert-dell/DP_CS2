@@ -1,0 +1,61 @@
+import pyautogui
+import random
+import time
+import math
+
+# 1. FIND THE BOX ON THE SCREEN
+def find_captcha():
+    print("Scanning screen for the CAPTCHA box...")
+    # This looks for the image 'box.png' on your actual monitor
+    location = pyautogui.locateOnScreen('box.png', confidence=0.8)
+    if location:
+        return pyautogui.center(location)
+    return None
+
+# 2. MOVE MOUSE LIKE A SHAKY HUMAN
+def human_move(target_x, target_y):
+    # Current mouse position
+    start_x, start_y = pyautogui.position()
+    
+    # Break the movement into 20-30 tiny steps
+    steps = random.randint(20, 35)
+    
+    for i in range(steps):
+        # Calculate progress (0.0 to 1.0)
+        t = i / steps
+        
+        # Move toward target but add "human" wobble/shiver
+        curr_x = start_x + (target_x - start_x) * t + random.randint(-3, 3)
+        curr_y = start_y + (target_y - start_y) * t + random.randint(-3, 3)
+        
+        pyautogui.moveTo(curr_x, curr_y)
+        
+        # Variable speed - slow down as you get closer
+        time.sleep(random.uniform(0.01, 0.03))
+
+# 3. RUN THE SEQUENCE
+def run():
+    target = find_captcha()
+    
+    if target:
+        print(f"Target found at {target}. Initiating movement...")
+        
+        # Add a random offset so it doesn't click the EXACT center every time
+        click_x = target.x + random.randint(-10, 10)
+        click_y = target.y + random.randint(-10, 10)
+        
+        human_move(click_x, click_y)
+        
+        # Nervous hesitation before clicking
+        time.sleep(random.uniform(0.5, 1.2))
+        
+        pyautogui.click()
+        print("Done! I am 'definitely' a human.")
+    else:
+        print("Error: Could not see the checkbox. Is it visible in your browser?")
+
+if __name__ == "__main__":
+    # Give yourself 3 seconds to switch to the browser window
+    print("Switch to your browser now! Starting in 3...")
+    time.sleep(3)
+    run()

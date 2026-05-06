@@ -130,11 +130,21 @@ while running:
     def ai_move():
         # Simple AI that picks a random valid move
         #randomly picks a moveable spots and moves there, in the (move_piece) function call this after the players turn
+        valid_moves = random.valid_moves_red()
+        if valid_moves:
+            move = random.choice(valid_moves)
+            move_piece(selected_piece, move)
 
-    def move_piece(start, end):
-        #check if space is allowed, then move piece to that spot
-        #after player goes call ai moves from (ai_move)
-
+    def move_piece(start,end):
+        #user cliks from their piece to a spot, and if moveable it moves there
+        if selected_piece in valid_moves(start):
+            # move piece to clicked spot
+            message = f"moved piece from {start} to {end}"
+            #DISPLAY MESAGE IN PYGAME WINDOW
+            move2 = font.render(message, True, "yellow")
+            screen.blit(move2, (10, 960))
+            #move piece (selected piece) to (clicked spot) if a (valid_move_blue)
+            
 
     # Update the display
     pygame.display.flip()

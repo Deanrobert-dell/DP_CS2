@@ -54,9 +54,9 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP and snake_dir != (0, cell):
+                if event.key == pygame.K_UP and snake_dir != (0, -cell):
                     snake_dir = (0, -cell)
-                elif event.key == pygame.K_DOWN and snake_dir != (0, -cell):
+                elif event.key == pygame.K_DOWN and snake_dir != (0, cell):
                     snake_dir = (0, cell)
                 elif event.key == pygame.K_LEFT and snake_dir != (cell, 0):
                     snake_dir = (-cell, 0)
@@ -109,13 +109,13 @@ def main():
         screen.blit(score_text, (10, 10))
         # Snake speed based on tick
         pygame.display.flip()
-        clock.tick(7 + score // 5)  # peak difficulty progression
+        clock.tick(7 + score // 5)  # peak difficulty progression, the slashes divide
         #if function so if snake dies it says you died, score:, then function returns (score)
         if not running:
-            game_over_text = font.render(f"fgame over for you: {score}", True, "white")
+            game_over_text = font.render(f" game over for you: {score}", True, "white")
             screen.blit(game_over_text, (WIDTH // 2 - game_over_text.get_width() // 2, HEIGHT // 2))
             pygame.display.flip()
-            
+
             pygame.time.wait(2000)
             running = True
             pygame.quit()
