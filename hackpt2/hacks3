@@ -3,59 +3,62 @@ import random
 import time
 import math
 
-# 1. FIND THE BOX ON THE SCREEN
+# 1. FIND THE BOX ON THE SCREEN (With multi-stage testing)
 def find_captcha():
-    print("Scanning screen for the CAPTCHA box...")
-    # This looks for the image 'box.png' on your actual monitor
-    location = pyautogui.locateOnScreen('box.png', confidence=0.8)
-    if location:
-        return pyautogui.center(location)
-    return None
+    # List of confidence levels to try
+    levels = [0.8, .75, .7, .65, .6, .55, .5, .45, .4, .35, .3, 0.2]
+
+    print("scans with multiple confidencse layers")
+    
+    while True: # Keep trying until it works
+        for level in levels:
+            print(f"Scanning with confidence: {level}...")
+            try:
+                location = pyautogui.locateOnScreen('box.png', confidence=level)
+                if location:
+                    print(f"!! MATHC FOUND {level} !!!")
+                    return pyautogui.center(location)
+            except pyautogui.ImageNotFoundException:
+                pass # Just move to the next level if not found
+        
+        print("retrying, pass had error")
+        time.sleep(2)
 
 # 2. MOVE MOUSE LIKE A SHAKY HUMAN
 def human_move(target_x, target_y):
-    # Current mouse position
     start_x, start_y = pyautogui.position()
-    
-    # Break the movement into 20-30 tiny steps
-    steps = random.randint(20, 35)
+    steps = random.randint(25, 40) # Slightly more steps for smoothness
     
     for i in range(steps):
-        # Calculate progress (0.0 to 1.0)
         t = i / steps
+        # Add a bit of a curve (sine wave) to the movement
+        offset = math.sin(t * math.pi) * random.randint(-15, 15)
         
-        # Move toward target but add "human" wobble/shiver
-        curr_x = start_x + (target_x - start_x) * t + random.randint(-3, 3)
-        curr_y = start_y + (target_y - start_y) * t + random.randint(-3, 3)
+        curr_x = start_x + (target_x - start_x) * t + offset
+        curr_y = start_y + (target_y - start_y) * t + offset
         
         pyautogui.moveTo(curr_x, curr_y)
-        
-        # Variable speed - slow down as you get closer
-        time.sleep(random.uniform(0.01, 0.03))
+        time.sleep(random.uniform(0.01, 0.02))
 
 # 3. RUN THE SEQUENCE
 def run():
     target = find_captcha()
     
     if target:
-        print(f"Target found at {target}. Initiating movement...")
-        
-        # Add a random offset so it doesn't click the EXACT center every time
-        click_x = target.x + random.randint(-10, 10)
-        click_y = target.y + random.randint(-10, 10)
+        # Randomize the click point within the box
+        click_x = target.x + random.randint(-8, 8)
+        click_y = target.y + random.randint(-8, 8)
         
         human_move(click_x, click_y)
         
-        # Nervous hesitation before clicking
-        time.sleep(random.uniform(0.5, 1.2))
+        # The "Am I a robot?" hesitation
+        time.sleep(random.uniform(0.7, 1.5))
         
         pyautogui.click()
-        print("Done! I am 'definitely' a human.")
-    else:
-        print("Error: Could not see the checkbox. Is it visible in your browser?")
+        print("complete")
 
 if __name__ == "__main__":
-    # Give yourself 3 seconds to switch to the browser window
-    print("Switch to your browser now! Starting in 3...")
+    print("checking now")
+    print("click on tab")
     time.sleep(3)
     run()
