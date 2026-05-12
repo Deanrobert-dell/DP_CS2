@@ -1,6 +1,7 @@
 import pygame
 import random
 
+
 # start
 pygame.init()
 
@@ -8,6 +9,7 @@ pygame.init()
 WIDTH, HEIGHT = 1000, 1000
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("snake")
+
 font = pygame.font.Font(None, 36)
 clock = pygame.time.Clock()
 
@@ -57,6 +59,7 @@ def main():
                 if event.key == pygame.K_UP and snake_dir != (0, -cell):
                     snake_dir = (0, -cell)
                 elif event.key == pygame.K_DOWN and snake_dir != (0, cell):
+
                     snake_dir = (0, cell)
                 elif event.key == pygame.K_LEFT and snake_dir != (cell, 0):
                     snake_dir = (-cell, 0)
@@ -75,7 +78,7 @@ def main():
         head_center = (snake_pos[0][0] + cell // 2, snake_pos[0][1] + cell // 2)
         #hitting into yourself kills, and ends game
         if head_center in [(segment[0] + cell // 2, segment[1] + cell // 2) for segment in snake_pos[1:]]:
-            game_over_text = font.render(f"fgame over for you: {score}", True, "white")
+            game_over_text = font.render(f"game over for you: {score}", True, "white")
             screen.blit(game_over_text, (WIDTH // 2 - game_over_text.get_width() // 2, HEIGHT // 2))
             pygame.display.flip()
             
@@ -109,7 +112,7 @@ def main():
         screen.blit(score_text, (10, 10))
         # Snake speed based on tick
         pygame.display.flip()
-        clock.tick(7 + score // 5)  # peak difficulty progression, the slashes divide
+        clock.tick(7 + score // 2)  # peak difficulty progression, the slashes divide
         #if function so if snake dies it says you died, score:, then function returns (score)
         if not running:
             game_over_text = font.render(f" game over for you: {score}", True, "white")
@@ -122,6 +125,6 @@ def main():
             return score
 #LEAVE
 
-if __name__ == "__main__": #calls only when ran from this file, not when imported 
+if __name__ == "__main__": #calls only when ran from this file, not when imported
     final_score = main()
     print(f"game over {final_score}")
