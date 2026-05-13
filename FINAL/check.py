@@ -109,7 +109,7 @@ while running:
                     message = f"move NOT allowed from {selected_piece} to {dest}"
                 selected_piece = None
 
-    # Draw your game here
+    #draw your game here
     screen.fill("black")  # Fill background with color
     draw_board()
     draw_pieces()
@@ -139,6 +139,7 @@ while running:
         #user cliks from their piece to a spot, and if moveable it moves there
         if selected_piece in valid_moves(start):
             # move piece to clicked spot
+            
             message = f"moved piece from {start} to {end}"
             #DISPLAY MESAGE IN PYGAME WINDOW
             move2 = font.render(message, True, "yellow")

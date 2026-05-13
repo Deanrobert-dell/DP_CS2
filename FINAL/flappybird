@@ -1,0 +1,78 @@
+#flappy bird game with simple physics
+import pygame 
+import random
+
+
+def pipes():
+    pipe_height = random.randint(150, 450)
+    top_pipe = pygame.Rect(400, 0, 100, pipe_height)
+    bottom_pipe = pygame.Rect(400, pipe_height + 150, 100, 600 - pipe_height - 150)
+    return top_pipe, bottom_pipe
+    #will add to main and make move right - left      
+
+
+def main():
+
+    pygame.init()
+
+    screen = pygame.display.set_mode((800 , 600))#window size
+
+    clock = pygame.time.Clock() #frames per second
+    bird = pygame.Rect(100, 250, 50, 50) #size of bird
+    gravity = 0.35 #varibale that adds to bird vert force to simulate gravity
+    bird_movement = 0 #base vert speed
+    game_active = True
+
+    # pipe management
+    pipe_list = []
+    SPAWNPIPE = pygame.USEREVENT + 1
+    pygame.time.set_timer(SPAWNPIPE, 1200)  # spawn every 1.2 seconds
+    pipe_speed = 5
+
+    while game_active:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                game_active = False
+            if event.type == pygame.KEYDOWN: #pressed key
+                if event.key == pygame.K_SPACE: #space
+                    bird_movement = 0
+                    bird_movement -= 10
+            if event.type == SPAWNPIPE:
+                top_pipe, bottom_pipe = pipes()
+                pipe_list.append(top_pipe)
+                pipe_list.append(bottom_pipe)
+
+        bird_movement += gravity
+        bird.y += bird_movement 
+          
+        if bird.bottom >= 600:
+            bird.bottom = 600 
+        if bird.top <= 0:
+            bird.top = 0
+
+        # move pipes
+        for pipe in pipe_list:
+            pipe.x -= pipe_speed
+
+        # remove off-screen pipes
+        pipe_list = [p for p in pipe_list if p.right > 0]
+
+        # collision detection
+        for pipe in pipe_list:
+            if bird.colliderect(pipe):
+                game_active = False
+                break
+
+        screen.fill((0, 0, 0))
+        pygame.draw.rect(screen, "#FDF500", bird)
+
+        # draw pipes
+        for pipe in pipe_list:
+            pygame.draw.rect(screen, "#00FF00", pipe)
+
+        pygame.display.flip() #updaTE
+        clock.tick(250)
+
+    pygame.quit()
+
+main()
